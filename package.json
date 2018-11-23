@@ -1,0 +1,28 @@
+{
+  "name": "test_app",
+  "version": "1.0.0",
+  "description": "test in ubuntu",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sraawan",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.2",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "get-age": "^1.0.1",
+    "jsonwebtoken": "^8.4.0",
+    "moment": "^2.22.2",
+    "moment-timezone": "^0.5.23",
+    "mongoose": "^5.3.12",
+    "pino": "^5.8.1",
+    "redis": "^2.8.0",
+    "redis-server": "^1.2.2",
+    "shortid": "^2.2.14",
+    "socket.io": "^2.1.1",
+    "uniqid": "^5.0.3"
+  }
+}
