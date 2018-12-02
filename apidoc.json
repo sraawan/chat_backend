@@ -3,6 +3,6 @@
     "version":"0.0.1",
     "description":"Documentation for the chat app",
     "title":"Chat APIs",
-    "url":"https://chatapp.splitchats.com"
+    "url":"http://localhost:3000"
     
 }
