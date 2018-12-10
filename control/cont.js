@@ -23,10 +23,11 @@
               if(err){
                   console.log(err)
                   logger.error('no users found','userController:getAllUsers()',10)
-                  let apiResponse = responce.generate(true,'no user data found',404,null)
+                  let apiResponse = responce.generate(true,'no user data found',505,null)
                   res.send(apiResponse)
               }else{
-                  res.send(result)
+                let apiResponse = responce.generate(false,'user data found',200,result)
+                res.send(apiResponse)
               }
           })
         }
@@ -57,11 +58,11 @@
                      .exec((err, result) => {
                         if (err) {
                             console.log(err)
-                            logger.error(err.message, 'User Controller: getSingleUser', 10)
+                            logger.error(err.message, 'User Controller: deleteUser', 10)
                             let apiResponse = responce.generate(true, 'Failed To Find User Details', 500, null)
                             res.send(apiResponse)
                         } else if (check.isEmpty(result)) {
-                            logger.info('No User Found', 'User Controller:getSingleUser')
+                            logger.info('No User Found', 'User Controller:deleteUser')
                             let apiResponse = responce.generate(true, 'No User Found', 404, null)
                             res.send(apiResponse)
                         } else {
@@ -135,7 +136,7 @@
        .then(createUser)
        .then((resolve)=>{
            delete resolve.password
-           let apiresponce = responce.generate(false,'user created',200,null)
+           let apiresponce = responce.generate(false,'user created',200,resolve)
            console.log(apiresponce)
            res.send(apiresponce)
        }).catch((err)=>{

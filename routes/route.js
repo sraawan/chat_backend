@@ -7,79 +7,167 @@ let setRouter= (app)=>{
     let baseurl = `${config.apiVersion}`;
 
     app.post(`${baseurl}/signup`,signupfunction.singup);
-    /**
-	 * @api {post} /api/v1/signup To Sign Up the new user 
+   	 /**
+	 * @api {post} /api/v1/signup user signup
 	 * @apiVersion 0.0.1
-	 * @apiGroup read
+	 * @apiGroup Post
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
-	 *
+	 * @apiParam {String} userName as passed as body parameter
+	 * @apiParam {String} email as passed as body parameter
+	 * @apiParam {String} phone as passed as body parameter
+	 * @apiParam {String} email as passed as body parameter
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
-	    {
-          "error": false,
-           "message": "user created",
-            "status": 200,
-              "data": null
-
-					}
-	    		]
+	    "error": false,
+	    "message": "user created",
+	    "status": 200,
+	    "data": null
 	    	}
 		}
 	}
 	  @apiErrorExample {json} Error-Response:
 	 *
 	 * {
-	    {
-    "error": true,
-    "message": "User Already Present With this Email",
-    "status": 403,
-    "data": null
-}
+	    "error": true,
+	    "message": "one or more parameter is missing" ,
+	    "status": 500,
+	    "data": null
 	   }
 	 */
 
 	app.post(`${baseurl}/login`,signupfunction.loginFunction)
 	/**
-	 * @api {post} /api/v1/login To  Login the new user 
+	 * @api {post} /api/v1/login user login
 	 * @apiVersion 0.0.1
-	 * @apiGroup read
+	 * @apiGroup Post
 	 *
 	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
-	 *
+	 * @apiParam {String} userName as passed as body parameter
+	 * @apiParam {String} email as passed as body parameter
 	 *  @apiSuccessExample {json} Success-Response:
 	 *  {
-	    {
-                "error": false,
-                "message": "Login Successful",
-                 "status": 200,
-            "data": {
-                "authToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RpZCI6Ijdad3VocEZKMCIsImlhdCI6MTU0MzAwNjI2Mzg0NCwiZXhwIjoxNTQzMTc5MDYzLCJzdWIiOiJhZG1pblRva2VuIiwiaXNzIjoic3JhdmFuIiwiZGF0YSI6eyJ1c2VySWQiOiJTN25QXzZlLXEiLCJ1c2VybmFtZSI6InNhaSIsImVtYWlsIjoic3JhYXdhbi5lcnBAZ21haWwuY29tIiwicGhvbmUiOjk3MDA3MDk3MDV9fQ.fHp1k_wStncOPOuGEbyYS7LgJJsXBxOF1-ZwOypoeFw",
-              "userDetails": {
-                 "userId": "S7nP_6e-q",
-                  "username": "sai",
-                  "email": "sraawan.erp@gmail.com",
-                   "phone": 9700709705
-        }
-    }
-}
+	    "error": false,
+	    "message": "Login Successful",
+	    "status": 200,
+	    "data": [{
+			"authToken": AuthToken,
+        "userDetails": {
+            "userId": string,
+            "username": string,
+            "email": string,
+            "phone": number
+		         }
+			   }
+			 ]
+	      }	
+	
 	  @apiErrorExample {json} Error-Response:
 	 *
 	 * {
-	{
-            "error": true,
-            "message": "No User Details Found",
-             "status": 404,
-               "data": null
-}
+	    "error": true,
+	    "message": "Login Failed" ,
+	    "status": 500,
+	    "data": null
+	   }
+	 */
+	app.get(`${baseurl}/all`,signupfunction.getAllUsers)
+
+	/**
+	 * @api {get} /api/v1/all  get all users 
+	 * @apiVersion 0.0.1
+	 * @apiGroup Read
+	 *
+	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
+	 * @apiSuccessExample {json} Success-Response:
+	 *  {
+	    "error": false,
+	    "message": user data found,
+	    "status": 200,
+	    "data": [{        
+            "userId": string,
+            "username": string,
+            "email": string,
+            "phone": number		       
+			   }
+			 ]
+	      }
+	    @apiErrorExample {json} Error-Response:
+	 *
+	 * {
+	    "error": true,
+	    "message": "no user found" ,
+	    "status": 500,
+	    "data": null
 	   }
 	 */
 	
-	app.get(`${baseurl}/all`,signupfunction.getAllUsers)
 
 	app.get(`${baseurl}/singleUser`,signupfunction.getSingleUser)
 
+	/**
+	 * @api {get} /api/v1/singleUser  Get a user details
+	 * @apiVersion 0.0.1
+	 * @apiGroup Read
+	 *
+	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
+	 * @apiParam {String} userId  pass as query parameter
+	 * @apiSuccessExample {json} Success-Response:
+	 *  {
+	    "error": false,
+	    "message": "User Details Found",
+	    "status": 200,
+	    "data": [{        
+            "userId": string,
+            "username": string,
+            "email": string,
+            "phone": number
+		       
+			    }
+			  ]
+	    	}
+	  @apiErrorExample {json} Error-Response:
+	 *
+	 * {
+	    "error": true,
+	    "message": "no user found" ,
+	    "status": 500,
+	    "data": null
+	   }
+	 */
+
 	app.post(`${baseurl}/delete/user`,signupfunction.deleteUser)
+	/**
+	 * @api {post} /api/v1//delete/user  Delete a User 
+	 * @apiVersion 0.0.1
+	 * @apiGroup Delete
+	 *
+	 * @apiParam {String} authToken The token for authentication.(Send authToken as query parameter, body parameter or as a header)
+	 * @apiParam {String} userId  pass as query parameter
+	 * @apiSuccessExample {json} Success-Response:
+	 *  {
+	    "error": false,
+	    "message": "user Deleted sucessfully",
+	    "status": 200,
+	    "data": [{        
+            "userId": string,
+            "username": string,
+            "email": string,
+            "phone": number
+		       
+		     }]
+	    	}
+		}
+	}
+	  @apiErrorExample {json} Error-Response:
+	 *
+	 * {
+	    "error": true,
+	    "message": "error occured" ,
+	    "status": 500,
+	    "data": null
+	   }
+	 */
 
 }
 module.exports={
