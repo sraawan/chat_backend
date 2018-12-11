@@ -138,7 +138,7 @@ let setRouter= (app)=>{
 
 	app.post(`${baseurl}/delete/user`,signupfunction.deleteUser)
 	/**
-	 * @api {post} /api/v1//delete/user  Delete a User 
+	 * @api {post} /api/v1/delete/user  Delete a User 
 	 * @apiVersion 0.0.1
 	 * @apiGroup Delete
 	 *
