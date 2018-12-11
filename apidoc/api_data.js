@@ -1,7 +1,7 @@
 define({ "api": [
   {
     "type": "post",
-    "url": "/api/v1//delete/user",
+    "url": "/api/v1/delete/user",
     "title": "Delete a User",
     "version": "0.0.1",
     "group": "Delete",
