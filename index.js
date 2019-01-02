@@ -7,10 +7,13 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const http = require('http')
 const logger = require('./lib/loggerlib')
+const routeLoggerMiddleware= require('./middleware/routelogger')
+
 
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
+app.use(routeLoggerMiddleware.logIp)
 
 //socket link
 app.use(express.static(path.join(__dirname,'controlS')))
